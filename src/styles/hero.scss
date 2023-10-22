@@ -1,0 +1,227 @@
+@import "./customBtn";
+@import "./customflex";
+@import "./variables";
+
+.hero {
+  background-color: $secondaryTextColor;
+  height: 100vh;
+  position: relative;
+}
+.hero-flex {
+  position: relative;
+  @include flexCenter();
+  height: 100%;
+  width: 100vw;
+  color: $headerBgColor;
+
+  // .blob1 {
+  //   --size: 15vmin;
+  //   position: absolute;
+  //   height: var(--size);
+  //   width: var(--size);
+  //   background-color: $headerBgColor;
+  //   opacity: 0.66;
+  //   border-radius: 50%;
+  //   right: 1rem;
+  //   bottom: 3rem;
+  // }
+  // .blob2 {
+  //   position: absolute;
+  //   height: 10vw;
+  //   width: 10vw;
+  //   background-color: $headerBgColor;
+  //   opacity: 0.66;
+  //   border-radius: 50%;
+  //   right: 3rem;
+  //   top: 1rem;
+  // }
+
+  // ..........left section.......................
+  .left-section {
+    flex-grow: 1;
+    @include flexCenter();
+    flex-direction: column;
+
+    .texts {
+      @include flexCenter();
+      flex-direction: column;
+      color: $neutralColor;
+      font-size: $primaryTextSize;
+      h2 {
+        text-shadow: 5px 5px 4px $headerBgColor;
+        position: relative;
+        animation: color 1s linear 1 forwards;
+      }
+      p {
+        margin-top: 1rem;
+        text-shadow: 2px 2px 4px $headerBgColor;
+        position: relative;
+        animation: slide 1s linear 1 forwards;
+        margin-bottom: 0.1rem;
+      }
+
+      div {
+        @include flexCenter();
+        li {
+          flex-direction: column;
+          margin: 0 10px;
+          margin-top: 2rem;
+          list-style: none;
+          a {
+            font-size: 25px;
+            text-decoration: none;
+            color: rgb(229, 237, 229);
+            border-bottom: 1px solid black;
+            box-shadow: 1px 1px 10px rgb(15, 0, 128);
+            background-color: rgb(42, 28, 144);
+          }
+        }
+      }
+    }
+    .cta {
+      margin-top: 0.5rem;
+      button {
+        padding: 0 2rem;
+      }
+    }
+  }
+
+  //.....................right section.................
+  .right-section {
+    --imagesize: 40vmin;
+    @include flexCenter();
+    flex-grow: 1;
+    position: relative;
+    z-index: 1;
+    img {
+      width: var(--imagesize);
+      height: var(--imagesize);
+      border-radius: 50%;
+      background-color: rgb(14, 14, 100);
+      z-index: 1;
+    }
+  }
+}
+@keyframes color {
+  0% {
+    color: rgb(115, 255, 0);
+    z-index: -1;
+  }
+  25% {
+    color: rgb(194, 205, 211);
+    z-index: 1;
+  }
+  50% {
+    color: rgb(115, 255, 0);
+    z-index: -1;
+  }
+  75% {
+    color: rgb(0, 162, 255);
+    z-index: 1;
+  }
+  100% {
+    color: rgb(11, 11, 183);
+    // top: 0px;
+  }
+}
+
+@keyframes slide {
+  0% {
+    left: -300px;
+    z-index: -1;
+  }
+  50% {
+    z-index: 1;
+  }
+  100% {
+    left: 0px;
+  }
+}
+
+@media screen and (max-width: 630px) {
+  .hero {
+    height: 100vh;
+  }
+  .left-section {
+    .texts {
+      h2 {
+        font-size: 30px;
+      }
+      p {
+        margin-top: 3rem;
+        font-size: 20px;
+      }
+      // li {
+      //   font-size: 20px;
+      // }
+      span {
+        font-size: 20px;
+      }
+      div {
+        margin-top: -2rem;
+        li {
+          margin: 0 10px;
+
+          a {
+            margin-top: 0rem;
+            // font-size: 50px;
+            font-size: 10px;
+          }
+        }
+      }
+    }
+    .cta {
+      margin-top: 0.5em;
+      padding-bottom: 1rem;
+      button {
+        font-size: 18px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .hero {
+    height: 80vh;
+  }
+  .hero-flex {
+    position: relative;
+    flex-direction: column-reverse;
+    height: 100%;
+    width: 100vw;
+    color: $headerBgColor;
+    .right-section {
+      --imagesize: 40vmin;
+      // --imagesize: 50%;
+      @include flexCenter();
+      position: relative;
+      z-index: 1;
+      img {
+        width: var(--imagesize);
+        height: var(--imagesize);
+      }
+    }
+  }
+}
+@media screen and (max-width: 330px) {
+  .hero {
+    height: 80vh;
+  }
+  .hero-flex {
+    position: relative;
+    flex-direction: column-reverse;
+    height: 100%;
+    width: 100vw;
+    color: $headerBgColor;
+    .right-section {
+      --imagesize: 40vmin;
+      @include flexCenter();
+      position: relative;
+      z-index: 1;
+      img {
+        width: var(--imagesize);
+        height: var(--imagesize);
+      }
+    }
+  }
+}

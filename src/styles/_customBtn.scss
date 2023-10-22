@@ -1,0 +1,17 @@
+@import './variables';
+
+button {
+width: fit-content;
+height: fit-content;
+border-radius: $btnRadius;
+transition: all .5s ease-in;
+background-color: $accentuatingColor;
+color: $neutralColor;
+font-size: $secondaryTextSize;
+cursor: pointer;
+
+&:hover{
+    background-color: $neutralColor;
+    color: $accentuatingColor;
+}
+}

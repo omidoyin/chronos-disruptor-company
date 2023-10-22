@@ -1,0 +1,19 @@
+@import './customBtn';
+@import './customflex';
+@import './variables';
+
+.footer {
+    @include flexCenter();
+    margin-top: 0;
+    height: 10vh;
+    background-color: #0e0c0c;
+    color: $secondarycolor;
+}
+
+@media screen and (max-width: 500px) {
+    .footer {
+      h2 {
+        font-size: 1.2rem;
+      } 
+    }
+}

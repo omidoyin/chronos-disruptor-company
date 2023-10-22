@@ -1,0 +1,36 @@
+@import './customBtn';
+@import './customflex';
+@import './variables';
+
+.about {
+    margin-top: 20px;
+    @include flexCenter();
+    flex-direction: row;
+
+    .left-section {
+        @include flexCenter();
+        margin-left: 30px;
+        flex-grow: 1;
+        border-radius: $btnRadius;
+        background-color: $neutralColor;
+        img {
+            padding: 30px;
+            width: 20vmin;
+        }
+        
+    }
+
+    .right-section {
+        @include flexCenter();
+        flex-direction: column;
+        flex-grow: 3;
+
+        h2 {
+            font-size: $primaryTextSize;
+        }
+        p{
+            font-size: $secondaryTextSize;
+        }
+    }
+
+}

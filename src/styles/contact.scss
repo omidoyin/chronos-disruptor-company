@@ -1,0 +1,86 @@
+@import './customBtn';
+@import './customflex';
+@import './variables';
+
+.contact {
+    background-color: $headerBgColor;
+}
+.contact-content {
+    width: 40%;
+    height: 100%;
+    padding-bottom: 20px;
+    padding-top: 2rem;
+    // margin-right: 0px;
+    @include flexCenter();
+    flex-direction: column;
+    h2{
+        font-size: $primaryTextSize;
+        color: $secondaryTextColor;
+        padding-bottom: 1rem;
+        
+    }
+    form {
+        @include flexCenter();
+        flex-direction: column;
+        width: 100%;
+        border-radius: $btnRadius;
+
+        input , textarea  {
+            width: 100%;
+            font-size: $secondaryTextSize;
+            margin-bottom: 6px;
+            padding: .5em;
+        }
+       
+        button {
+            color: $secondaryTextColor;
+            padding: 0 12px;
+        }
+    }
+}
+
+@media screen and (max-width:1450px) {
+    .contact-content {
+        h2{
+            font-size: 20px;
+        }
+        form {
+            width: 40vw;
+    
+            textarea  {
+                width: 100%;
+                height: 10rem;
+            }
+           
+            button {
+                font-size: 20px;
+            }
+        }
+    }
+}
+@media screen and (max-width:430px) {
+    .contact-content {
+        h2{
+            font-size: 20px;
+            width: 7rem;
+        }
+        form {
+            width: 60vw;
+    
+            textarea  {
+                width: 100%;
+                height: 10rem;
+                font-size: 18px;
+            }
+            input  {
+                width: 100%;
+                height: 2rem;
+                font-size: 18px;
+            }
+           
+            button {
+                font-size: 20px;
+            }
+        }
+    }
+}

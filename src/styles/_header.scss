@@ -1,0 +1,132 @@
+@import "./variables";
+@import "./customflex";
+
+header {
+  height: 10vh;
+  height: 5rem;
+  background-color: $headerBgColor;
+  position: relative;
+}
+.nav-bar {
+  height: 100%;
+  color: $secondaryTextColor;
+  @include flexCenter();
+  justify-content: space-around;
+  z-index: 999;
+ 
+
+  span {
+    font-size: $logoprimaryTextSize;
+    color: $primarycolor;
+    text-shadow: 1px 2px 3px rgb(26, 196, 88);
+    transition: all 1s ease-out;
+    font-family: "Freehand", cursive;
+  }
+  h2 {
+    position: relative;
+    color: $secondarycolor;
+    font-size: $logosecondaryTextSize;
+    justify-content: center;
+    cursor: pointer;
+    &:hover span {
+      color: $hoverColor;
+    }
+  }
+  div {
+    flex-grow: 2;
+  }
+  nav {
+    flex-grow: 2;
+    @include flexCenter();
+    justify-content: space-evenly;
+    li {
+      list-style: none;
+      font-size: $secondaryTextSize;
+      cursor: pointer;
+      transition: all 0.5s ease-out;
+      &:hover {
+        border-bottom: 5px solid green;
+        border-bottom-left-radius: 5px;
+      }
+    }
+  }
+  .toggle-btn {
+    width: fit-content;
+    display: none;
+    flex-grow: 0;
+    // margin: auto;
+    padding-right: 2rem;
+    z-index: 99;
+    cursor: pointer;
+
+    .icon {
+        position: relative;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+    }
+  }
+}
+
+// @media screen and (max-width:1230px) {
+//     .nav-bar {
+//         nav {
+
+//             li {
+//                 font-size: 2px;
+//             }
+//         }
+//         h2, span {
+//             font-size: 7px;
+//         }
+//     }
+// }
+@media screen and (max-width: 780px) {
+  .nav-bar {
+    li {
+      font-size: 23px;
+    }
+    h2,
+    span {
+      font-size: 15px;
+    }
+  }
+}
+@media screen and (max-width: 1230px) {
+  .nav-bar {
+    .toggle-btn {
+      display: block;
+      font-size: 50px;
+    }
+    .show {
+      left: 0;
+    }
+    nav {
+      flex-direction: column;
+      justify-content: start;
+      align-items: flex-start;
+      position: absolute;
+      top: 5rem;
+      padding-top: 4rem;
+      padding-left: 1rem;
+      left: -40rem;
+      background-color: #ffffff;
+      width: 50%;
+      height: 100rem;
+      height: 100vh;
+      z-index: 10;
+      transition: all 0.3s ease-in;
+      li {
+        margin-bottom: 1rem;
+        font-weight: bolder;
+        font-size: 1rem;
+      }
+    }
+    
+
+    h2,
+    span {
+      font-size: 25px;
+    }
+  }
+}

@@ -1,0 +1,85 @@
+@import './customBtn';
+@import './customflex';
+@import './variables';
+
+.skills {
+    position: relative;
+    margin-top: 3em;
+    margin-bottom: 4em;}
+.skills-flex {
+    position: relative;
+    text-align: left;
+    flex-direction: column;
+    color: $headerBgColor;
+    .header-text {
+        font-size: $primaryTextSize;
+        position: relative;
+        width: fit-content;
+        color: $secondaryTextColor;
+        right: 0;
+        left: 0;
+        margin: 0 auto;
+        width: fit-content;
+        margin-bottom: 1em;
+        padding: 0 .5em;
+        z-index: 0;
+        &::after {
+            content: ".";
+            width: 3.5em;
+            color: $headerBgColor;
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            background-color: $headerBgColor;
+            z-index: -1;
+            transform: skewX(23deg);
+        }
+    }
+    div {
+        animation: slide2 1.5s linear;
+        width: 80%;
+        position: relative;
+        left: 0%;
+        text-align: left;
+        h2 {
+            font-size: $primaryTextSize;
+            text-decoration: underline;
+            margin-top: 1rem;
+        }
+        p {
+            font-size: $logosecondaryTextSize;
+        }
+    }
+}
+
+@keyframes slide2 {
+    0%{left: -700px;}
+    100%{left: 0px;}
+    
+}
+
+@media screen and (max-width:430px) {
+    .skills-flex {
+        .header-text {
+            font-size: 1.3rem;
+            width: fit-content;
+            margin-bottom: 1em;
+            padding: 0 .5em;
+            &::after {
+                content: ".";
+                width: 3.5em;
+                left: 0;
+                bottom: 0;
+            }
+        }
+        div {
+            width: 80%;
+            h2 {
+                font-size: 1.3rem;
+            }
+            p {
+                font-size: 1rem;
+            }
+        }
+    }
+}
