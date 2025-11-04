@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { Link as RouterLink, useLocation } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
+import * as React from 'react';
+import { Link as RouterLink, useLocation, LinkProps as RouterLinkProps } from 'react-router-dom';
 import {
   AppBar,
   Toolbar,
@@ -11,54 +10,46 @@ import {
   Drawer,
   List,
   ListItem,
+  ListItemButton,
   ListItemText,
-  useScrollTrigger,
   Slide,
   useTheme,
   useMediaQuery,
   Typography,
   Divider,
+  ButtonProps,
+  ButtonBase,
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
 import { styled } from '@mui/material/styles';
 
-const navItems = [
-  { name: 'Home', path: '/' },
-  { name: 'About', path: '/about' },
-  { name: 'Services', path: '/services' },
-  { name: 'Contact', path: '/contact' },
-];
+// Type for NavButton props
+type NavButtonProps = Omit<ButtonProps, 'component'> & {
+  component?: React.ElementType;
+  to?: string;
+};
 
-const StyledAppBar = styled(AppBar)(({ theme }) => ({
-  background: 'rgba(15, 15, 26, 0.9)',
-  backdropFilter: 'blur(10px)',
-  boxShadow: '0 2px 10px rgba(0, 0, 0, 0.1)',
-  padding: '0.5rem 0',
-}));
-
-const StyledToolbar = styled(Toolbar)({
-  display: 'flex',
-  justifyContent: 'space-between',
-  alignItems: 'center',
-  padding: '0 !important',
+// Create a custom button that works with React Router
+const RouterButton = React.forwardRef<HTMLButtonElement, NavButtonProps>(({
+  component: Component = Button,
+  to,
+  ...props
+}, ref) => {
+  return (
+    <Component
+      ref={ref}
+      component={to ? RouterLink : 'button'}
+      to={to}
+      {...props}
+    />
+  );
 });
 
-const Logo = styled(Typography)(({ theme }) => ({
-  fontWeight: 800,
-  fontSize: '1.5rem',
-  background: 'linear-gradient(90deg, #00bcd4, #00acc1)',
-  WebkitBackgroundClip: 'text',
-  WebkitTextFillColor: 'transparent',
-  backgroundClip: 'text',
-  textFillColor: 'transparent',
-  marginRight: '2rem',
-  [theme.breakpoints.down('sm')]: {
-    fontSize: '1.25rem',
-  },
-}));
+RouterButton.displayName = 'RouterButton';
 
-const NavButton = styled(Button)(({ theme }) => ({
+// Create a styled NavButton
+const NavButton = styled(RouterButton)({
   color: 'white',
   fontWeight: 500,
   fontSize: '1rem',
@@ -87,45 +78,139 @@ const NavButton = styled(Button)(({ theme }) => ({
       width: '70%',
     },
   },
-}));
+});
 
-const DrawerContent = styled(Box)(({ theme }) => ({
+// Create a custom Link component that works with React Router and MUI
+const LinkBehavior = React.forwardRef<HTMLAnchorElement, RouterLinkProps>((props, ref) => (
+  <RouterLink ref={ref} {...props} role={undefined} />
+));
+
+LinkBehavior.displayName = 'LinkBehavior';
+
+const navItems = [
+  { name: 'Home', path: '/' },
+  { name: 'About', path: '/about' },
+  { name: 'Services', path: '/services' },
+  { name: 'Contact', path: '/contact' },
+];
+
+const StyledAppBar = styled(AppBar)({
+  background: 'rgba(15, 15, 26, 0.9)',
+  backdropFilter: 'blur(10px)',
+  boxShadow: '0 2px 10px rgba(0, 0, 0, 0.1)',
+  padding: '0.5rem 0',
+});
+
+const StyledToolbar = styled(Toolbar)({
+  display: 'flex',
+  justifyContent: 'space-between',
+  alignItems: 'center',
+  padding: '0 !important',
+});
+
+const Logo = styled(Typography)({
+  fontWeight: 800,
+  fontSize: '1.5rem',
+  background: 'linear-gradient(90deg, #00bcd4, #00acc1)',
+  WebkitBackgroundClip: 'text',
+  WebkitTextFillColor: 'transparent',
+  backgroundClip: 'text',
+  textFillColor: 'transparent',
+  marginRight: '2rem',
+  '@media (max-width: 600px)': {
+    fontSize: '1.25rem',
+  },
+});
+
+const DrawerContent = styled(Box)({
   width: 280,
   height: '100%',
-  background: theme.palette.background.default,
   padding: '2rem 1.5rem',
-}));
+  background: 'linear-gradient(180deg, #0f0f1a 0%, #1a1a2e 100%)',
+});
 
-const Navbar = () => {
-  const [mobileOpen, setMobileOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
+const Navbar: React.FC = () => {
+  const [mobileOpen, setMobileOpen] = React.useState(false);
+  const [scrolled, setScrolled] = React.useState(false);
   const location = useLocation();
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
 
-  const handleDrawerToggle = () => {
-    setMobileOpen(!mobileOpen);
-  };
+  const handleDrawerToggle = React.useCallback(() => {
+    setMobileOpen(prev => !prev);
+  }, []);
 
-  // Handle scroll effect
-  const handleScroll = () => {
-    const isScrolled = window.scrollY > 20;
-    if (isScrolled !== scrolled) {
+  React.useEffect(() => {
+    const handleScroll = () => {
+      const isScrolled = window.scrollY > 20;
       setScrolled(isScrolled);
-    }
-  };
+    };
 
-  useEffect(() => {
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, [scrolled]);
+  }, []);
+
+  // Set display name for the component
+  (Navbar as React.FC & { displayName: string }).displayName = 'Navbar';
 
   const drawer = (
     <DrawerContent>
       <Box display="flex" justifyContent="space-between" alignItems="center" mb={3}>
-        <Logo>Chronos Disruptor</Logo>
+        <Box component={RouterLink} to="/" sx={{ height: '60px', display: 'flex', alignItems: 'center', gap: 2, textDecoration: 'none' }}>
+          <img 
+            src="/company_logo.png" 
+            alt="VeleonEX Logo" 
+            style={{ 
+              height: '100%', 
+              width: 'auto',
+              objectFit: 'contain'
+            }} 
+          />
+          <Box 
+            component="span"
+            sx={{
+              display: 'inline-block',
+              position: 'relative',
+              fontFamily: 'inherit',
+              '& span': {
+                display: 'inline-block',
+                position: 'relative',
+                color: 'white',
+                fontWeight: 700,
+                background: 'linear-gradient(90deg, #00bcd4, #00acc1)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text',
+                textFillColor: 'transparent',
+                transform: 'rotate(-2deg)',
+                transformOrigin: 'left center',
+                '&:nth-of-type(2n)': {
+                  transform: 'rotate(2deg)',
+                  position: 'relative',
+                  top: '-0.1em'
+                }
+              }
+            }}
+          >
+            {'VeleonEX'.split('').map((char, i) => (
+              <Box 
+                key={i} 
+                component="span"
+                sx={{
+                  display: 'inline-block',
+                  transition: 'transform 0.3s ease',
+                  '&:hover': {
+                    transform: `translateY(${i % 2 ? '-3px' : '3px'})`,
+                  }
+                }}
+              >
+                {char}
+              </Box>
+            ))}
+          </Box>
+        </Box>
         <IconButton onClick={handleDrawerToggle} color="inherit">
           <CloseIcon />
         </IconButton>
@@ -134,27 +219,34 @@ const Navbar = () => {
       <List>
         {navItems.map((item) => (
           <ListItem
-            button
             key={item.name}
-            component={RouterLink}
-            to={item.path}
-            onClick={handleDrawerToggle}
+            disablePadding
             sx={{
-              borderRadius: '8px',
               mb: 1,
+              borderRadius: '8px',
               bgcolor: location.pathname === item.path ? 'rgba(0, 188, 212, 0.1)' : 'transparent',
               '&:hover': {
                 bgcolor: 'rgba(255, 255, 255, 0.05)',
               },
             }}
           >
-            <ListItemText
-              primary={item.name}
-              primaryTypographyProps={{
-                fontWeight: 500,
-                color: location.pathname === item.path ? 'primary.main' : 'text.primary',
+            <ListItemButton
+              component={LinkBehavior}
+              to={item.path}
+              onClick={handleDrawerToggle}
+              selected={location.pathname === item.path}
+              sx={{
+                borderRadius: '8px',
               }}
-            />
+            >
+              <ListItemText
+                primary={item.name}
+                primaryTypographyProps={{
+                  fontWeight: 500,
+                  color: location.pathname === item.path ? 'primary.main' : 'text.primary',
+                }}
+              />
+            </ListItemButton>
           </ListItem>
         ))}
       </List>
@@ -163,7 +255,7 @@ const Navbar = () => {
           variant="contained"
           color="primary"
           fullWidth
-          component={RouterLink}
+          component={LinkBehavior}
           to="/contact"
           onClick={handleDrawerToggle}
           sx={{
@@ -193,9 +285,61 @@ const Navbar = () => {
                   display: 'flex',
                   alignItems: 'center',
                   textDecoration: 'none',
+                  height: '100px',
+                  
                 }}
               >
-                <Logo>Chronos Disruptor</Logo>
+                <img 
+                  src="/company_logo.png" 
+                  alt="VeleonEX Logo" 
+                  style={{ 
+                    height: '100%', 
+                    width: 'auto',
+                    objectFit: 'fill'
+                  }} 
+                />
+                <Box 
+                  component="span"
+                  sx={{
+                    display: 'inline-block',
+                    position: 'relative',
+                    fontFamily: 'inherit',
+                    '& span': {
+                      display: 'inline-block',
+                      position: 'relative',
+                      color: 'white',
+                      fontWeight: 700,
+                      background: 'linear-gradient(90deg, #00bcd4, #00acc1)',
+                      WebkitBackgroundClip: 'text',
+                      WebkitTextFillColor: 'transparent',
+                      backgroundClip: 'text',
+                      textFillColor: 'transparent',
+                      transform: 'rotate(-2deg)',
+                      transformOrigin: 'left center',
+                      '&:nth-of-type(2n)': {
+                        transform: 'rotate(2deg)',
+                        position: 'relative',
+                        top: '-0.1em'
+                      }
+                    }
+                  }}
+                >
+                  {'VeleonEX'.split('').map((char, i) => (
+                    <Box 
+                      key={i} 
+                      component="span"
+                      sx={{
+                        display: 'inline-block',
+                        transition: 'transform 0.3s ease',
+                        '&:hover': {
+                          transform: `translateY(${i % 2 ? '-3px' : '3px'})`,
+                        }
+                      }}
+                    >
+                      {char}
+                    </Box>
+                  ))}
+                </Box>
               </Box>
 
               {isMobile ? (
@@ -216,7 +360,7 @@ const Navbar = () => {
                     {navItems.map((item) => (
                       <NavButton
                         key={item.name}
-                        component={RouterLink}
+                        component={LinkBehavior}
                         to={item.path}
                         className={location.pathname === item.path ? 'active' : ''}
                       >
@@ -227,7 +371,7 @@ const Navbar = () => {
                   <Button
                     variant="contained"
                     color="primary"
-                    component={RouterLink}
+                    component={LinkBehavior}
                     to="/contact"
                     sx={{
                       ml: 2,
@@ -258,7 +402,7 @@ const Navbar = () => {
         open={mobileOpen}
         onClose={handleDrawerToggle}
         ModalProps={{
-          keepMounted: true, // Better open performance on mobile.
+          keepMounted: true,
         }}
         sx={{
           '& .MuiDrawer-paper': {

@@ -93,10 +93,10 @@ const Footer = () => {
         <Grid container spacing={5}>
           <Grid item xs={12} sm={6} md={4}>
             <FooterTitle variant="h6" gutterBottom>
-              Chronos Disruptor
+              VeleonEX
             </FooterTitle>
             <Typography variant="body2" color="text.secondary" paragraph>
-              Empowering businesses with innovative technology solutions. We help companies transform their ideas into reality through cutting-edge development and design.
+              Timeless Innovation. Infinite Experience. Building intelligent, human-centered experiences that evolve with the future.
             </Typography>
             <Box mt={2}>
               <SocialIcon aria-label="Facebook">

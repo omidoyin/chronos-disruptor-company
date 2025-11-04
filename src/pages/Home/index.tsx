@@ -6,7 +6,7 @@ import { Link as RouterLink } from 'react-router-dom';
 import { KeyboardArrowRight, RocketLaunch, Code, Cloud, Security } from '@mui/icons-material';
 
 // Using a placeholder image URL
-const HeroImage = 'https://via.placeholder.com/800x600/0f0f1a/00bcd4?text=Welcome+to+Chronos+Disruptor';
+const HeroImage = 'https://via.placeholder.com/800x600/0A0F29/C9CCD6?text=Welcome+to+VeleonEX';
 
 const HeroSection = styled(Box)(({ theme }) => ({
   minHeight: '100vh',
@@ -35,7 +35,19 @@ const HeroContent = styled(Box)(({ theme }) => ({
   },
 }));
 
+// Properly type the motion component for Typography
 const AnimatedText = motion(Typography);
+
+// Extend the Typography props to include motion props
+interface AnimatedTextProps extends React.ComponentProps<typeof Typography> {
+  component?: React.ElementType;
+  initial?: any;
+  animate?: any;
+  transition?: any;
+}
+
+// Create a properly typed version of AnimatedText
+const TypographyMotion = motion(Typography) as React.FC<AnimatedTextProps>;
 
 const FeatureCard = styled(Box)(({ theme }) => ({
   backgroundColor: 'rgba(255, 255, 255, 0.03)',
@@ -107,13 +119,13 @@ const Home = () => {
                         mr: 2,
                       }}
                     />
-                    Welcome to Chronos Disruptor
+                    Welcome to VeleonEX
                   </Typography>
                 </motion.div>
 
-                <AnimatedText
+                <TypographyMotion
                   variant="h1"
-                  component="h1"
+                  component={motion.h1}
                   sx={{
                     fontWeight: 800,
                     mb: 3,
@@ -130,11 +142,11 @@ const Home = () => {
                   <Box component="span" sx={{ color: 'primary.main' }}>
                     .
                   </Box>
-                </AnimatedText>
+                </TypographyMotion>
 
-                <AnimatedText
+                <TypographyMotion
                   variant="h4"
-                  component="h2"
+                  component={motion.h2}
                   color="text.secondary"
                   sx={{ mb: 4, fontWeight: 400 }}
                   initial={{ opacity: 0, y: 20 }}
@@ -142,7 +154,7 @@ const Home = () => {
                   transition={{ duration: 0.5, delay: 0.2 }}
                 >
                   We help businesses transform through innovative technology solutions and digital experiences that matter.
-                </AnimatedText>
+                </TypographyMotion>
 
                 <Box
                   sx={{
