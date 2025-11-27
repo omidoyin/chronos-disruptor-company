@@ -3,7 +3,7 @@ import { Box, Container, Typography, Grid, Card, CardContent, Button, Tabs, Tab,
 import { styled } from '@mui/material/styles';
 import { motion } from 'framer-motion';
 import { Link as RouterLink } from 'react-router-dom';
-import { ArrowRight, Code, DesignServices, Cloud, Smartphone, Storage, Security, Analytics, Support } from '@mui/icons-material';
+import { ArrowRight, Code, DesignServices, Cloud, Smartphone, Security, Analytics } from '@mui/icons-material';
 
 // Using a placeholder image URL
 const servicesHero = 'https://via.placeholder.com/800x500/0f0f1a/00bcd4?text=Our+Services';
@@ -24,7 +24,7 @@ const ServicesSection = styled(Box)(({ theme }) => ({
   },
 }));
 
-const SectionTitle = styled(Typography)(({ theme }) => ({
+const SectionTitle = styled(Typography)(() => ({
   position: 'relative',
   display: 'inline-block',
   '&::after': {
@@ -39,7 +39,7 @@ const SectionTitle = styled(Typography)(({ theme }) => ({
   },
 }));
 
-const ServiceCard = styled(Card)(({ theme }) => ({
+const ServiceCard = styled(Card)(() => ({
   height: '100%',
   borderRadius: '16px',
   background: 'rgba(255, 255, 255, 0.03)',
@@ -158,7 +158,7 @@ const Services = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
 
-  const handleTabChange = (event: React.SyntheticEvent, newValue: number) => {
+  const handleTabChange = (_: React.SyntheticEvent, newValue: number) => {
     setTabValue(newValue);
   };
 
@@ -260,7 +260,7 @@ const Services = () => {
       <Box sx={{ py: 10, bgcolor: 'background.paper' }}>
         <Container maxWidth="lg">
           <Box textAlign="center" mb={8}>
-            <SectionTitle variant="h4" component="h2" sx={{ mb: 2 }}>
+            <SectionTitle variant="h4" sx={{ mb: 2 }}>
               Our Services
             </SectionTitle>
             <Typography variant="body1" color="text.secondary" sx={{ maxWidth: '700px', mx: 'auto' }}>

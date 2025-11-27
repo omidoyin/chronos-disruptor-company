@@ -8,7 +8,7 @@ import { KeyboardArrowRight, RocketLaunch, Code, Cloud, Security } from '@mui/ic
 // Using a placeholder image URL
 const HeroImage = 'https://via.placeholder.com/800x600/0A0F29/C9CCD6?text=Welcome+to+VeleonEX';
 
-const HeroSection = styled(Box)(({ theme }) => ({
+const HeroSection = styled(Box)(() => ({
   minHeight: '100vh',
   display: 'flex',
   alignItems: 'center',
@@ -36,7 +36,7 @@ const HeroContent = styled(Box)(({ theme }) => ({
 }));
 
 // Properly type the motion component for Typography
-const AnimatedText = motion(Typography);
+
 
 // Extend the Typography props to include motion props
 interface AnimatedTextProps extends React.ComponentProps<typeof Typography> {

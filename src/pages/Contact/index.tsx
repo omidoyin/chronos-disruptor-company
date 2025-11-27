@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Box, Container, Typography, Grid, TextField, Button, Card, CardContent, useTheme, useMediaQuery, Divider, Alert, Snackbar } from '@mui/material';
+import { Box, Container, Typography, Grid, TextField, Button, Card, CardContent, useTheme, useMediaQuery, Alert, Snackbar } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { motion } from 'framer-motion';
 import { Send, LocationOn, Email, Phone, Schedule } from '@mui/icons-material';
@@ -23,7 +23,7 @@ const ContactSection = styled(Box)(({ theme }) => ({
   },
 }));
 
-const ContactCard = styled(Card)(({ theme }) => ({
+const ContactCard = styled(Card)(() => ({
   height: '100%',
   borderRadius: '16px',
   background: 'rgba(255, 255, 255, 0.03)',
@@ -414,7 +414,7 @@ const Contact = () => {
                     Follow Us
                   </Typography>
                   <Box display="flex" gap={2}>
-                    {['facebook', 'twitter', 'linkedin', 'github'].map((social, index) => (
+                    {['facebook', 'twitter', 'linkedin', 'github'].map((social) => (
                       <Button
                         key={social}
                         variant="outlined"

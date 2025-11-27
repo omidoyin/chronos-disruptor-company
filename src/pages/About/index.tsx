@@ -1,9 +1,9 @@
-import React from 'react';
-import { Box, Container, Typography, Grid, Avatar, Stack, Button, useTheme, useMediaQuery } from '@mui/material';
+
+import { Box, Container, Typography, Grid, Avatar, Stack, Button, useTheme, useMediaQuery, IconButton } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { motion } from 'framer-motion';
 import { Link as RouterLink } from 'react-router-dom';
-import { ArrowRight, CheckCircle, Group, EmojiObjects, ThumbUp } from '@mui/icons-material';
+import { ArrowRight, CheckCircle, Group, EmojiObjects } from '@mui/icons-material';
 
 // Using a placeholder image URL
 const aboutImage = 'https://via.placeholder.com/600x500/0f0f1a/00bcd4?text=About+Us';
@@ -24,7 +24,7 @@ const AboutSection = styled(Box)(({ theme }) => ({
   },
 }));
 
-const SectionTitle = styled(Typography)(({ theme }) => ({
+const SectionTitle = styled(Typography)(() => ({
   position: 'relative',
   display: 'inline-block',
   '&::after': {
@@ -201,7 +201,7 @@ const About = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5 }}
               >
-                <SectionTitle variant="h4" component="h2" sx={{ mb: 4 }}>
+                <SectionTitle variant="h4" sx={{ mb: 4 }}>
                   Our Story
                 </SectionTitle>
                 <Typography variant="body1" color="text.secondary" paragraph>
@@ -294,7 +294,7 @@ const About = () => {
       <Box sx={{ py: 10, bgcolor: 'background.paper' }}>
         <Container maxWidth="lg">
           <Box textAlign="center" mb={6}>
-            <SectionTitle variant="h4" component="h2" sx={{ mb: 2 }}>
+            <SectionTitle variant="h4" sx={{ mb: 2 }}>
               Meet Our Team
             </SectionTitle>
             <Typography variant="body1" color="text.secondary" sx={{ maxWidth: '700px', mx: 'auto' }}>

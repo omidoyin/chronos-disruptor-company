@@ -7,6 +7,7 @@ interface Testimonial {
   rating: number;
   avatar: string;
   categories: string[];
+  date: string;
 }
 
 export const testimonials: Testimonial[] = [
@@ -20,6 +21,7 @@ export const testimonials: Testimonial[] = [
     rating: 5,
     avatar: "/path/to/avatar1.jpg",
     categories: ["all", "development", "design"],
+    date: "October 2023",
   },
   {
     id: 2,
@@ -31,6 +33,7 @@ export const testimonials: Testimonial[] = [
     rating: 4,
     avatar: "/path/to/avatar2.jpg",
     categories: ["all", "design"],
+    date: "September 2023",
   },
   {
     id: 3,
@@ -42,5 +45,6 @@ export const testimonials: Testimonial[] = [
     rating: 5,
     avatar: "/path/to/avatar3.jpg",
     categories: ["all", "development"],
+    date: "August 2023",
   },
 ];

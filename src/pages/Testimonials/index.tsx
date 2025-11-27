@@ -10,7 +10,6 @@ import {
   Tabs,
   Tab,
   useTheme,
-  useMediaQuery,
   Button,
   Chip,
 } from "@mui/material";
@@ -28,6 +27,7 @@ interface Testimonial {
   rating: number;
   avatar: string;
   categories: string[];
+  date: string;
 }
 
 const TestimonialsSection = styled(Box)(({ theme }) => ({
@@ -63,7 +63,7 @@ const StyledSectionTitle = styled(Typography)(({ theme }) => ({
   },
 }));
 
-const TestimonialCard = styled(Card)(({ theme }) => ({
+const TestimonialCard = styled(Card)(() => ({
   height: "100%",
   borderRadius: "16px",
   background: "rgba(255, 255, 255, 0.03)",
@@ -181,7 +181,7 @@ const Testimonials = () => {
         >
           <Tabs
             value={category}
-            onChange={(e, newValue) => setCategory(newValue)}
+            onChange={(_, newValue) => setCategory(newValue)}
             variant="scrollable"
             scrollButtons="auto"
             allowScrollButtonsMobile
@@ -361,7 +361,6 @@ const Testimonials = () => {
           <Box position="relative" zIndex={1}>
             <StyledSectionTitle
               variant="h3"
-              component="h2"
               align="center"
               sx={{ mb: 1 }}
             >

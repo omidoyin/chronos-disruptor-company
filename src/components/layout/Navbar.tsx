@@ -15,10 +15,8 @@ import {
   Slide,
   useTheme,
   useMediaQuery,
-  Typography,
   Divider,
   ButtonProps,
-  ButtonBase,
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
@@ -108,19 +106,7 @@ const StyledToolbar = styled(Toolbar)({
   padding: '0 !important',
 });
 
-const Logo = styled(Typography)({
-  fontWeight: 800,
-  fontSize: '1.5rem',
-  background: 'linear-gradient(90deg, #00bcd4, #00acc1)',
-  WebkitBackgroundClip: 'text',
-  WebkitTextFillColor: 'transparent',
-  backgroundClip: 'text',
-  textFillColor: 'transparent',
-  marginRight: '2rem',
-  '@media (max-width: 600px)': {
-    fontSize: '1.25rem',
-  },
-});
+
 
 const DrawerContent = styled(Box)({
   width: 280,
