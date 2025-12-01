@@ -3,7 +3,7 @@ import { Box, Container, Typography, Grid, Card, CardContent, Button, Tabs, Tab,
 import { styled } from '@mui/material/styles';
 import { motion } from 'framer-motion';
 import { Link as RouterLink } from 'react-router-dom';
-import { ArrowRight, Code, DesignServices, Cloud, Smartphone, Security, Analytics } from '@mui/icons-material';
+import { ArrowRight, Code, DesignServices, Cloud, Smartphone, Security, Analytics, School, Psychology, SupervisorAccount } from '@mui/icons-material';
 
 // Using a placeholder image URL
 const servicesHero = 'https://via.placeholder.com/800x500/0f0f1a/00bcd4?text=Our+Services';
@@ -151,6 +151,45 @@ const services = [
       'Incident Response',
     ],
   },
+  {
+    id: 'tech-education',
+    title: 'Tech Education',
+    description: 'Empowering the next generation and workforce with comprehensive programming and tech skills.',
+    icon: <School />,
+    features: [
+      'Programming for Teenagers',
+      'Adult Coding Bootcamps',
+      'Corporate Staff Training',
+      'Hands-on Workshops',
+      'Certification Programs',
+    ],
+  },
+  {
+    id: 'ai-empowerment',
+    title: 'AI Empowerment',
+    description: 'Equipping companies with emerging AI skills and strategies to stay ahead in the innovation race.',
+    icon: <Psychology />,
+    features: [
+      'Corporate AI Strategy',
+      'Generative AI Training',
+      'Workflow Automation',
+      'LLM Integration',
+      'Future-proofing Business',
+    ],
+  },
+  {
+    id: 'mentorship',
+    title: 'Expert Mentorship',
+    description: 'Guiding individuals and organizations through the complex tech landscape with expert advice.',
+    icon: <SupervisorAccount />,
+    features: [
+      '1-on-1 Career Guidance',
+      'Technical Leadership',
+      'Startup Advisory',
+      'Code Reviews',
+      'Skill Path Planning',
+    ],
+  },
 ];
 
 const Services = () => {
@@ -167,6 +206,7 @@ const Services = () => {
     : services.filter(service => 
         tabValue === 1 ? ['web-development', 'mobile-apps', 'ui-ux-design'].includes(service.id)
         : tabValue === 2 ? ['cloud-solutions', 'data-analytics', 'cybersecurity'].includes(service.id)
+        : tabValue === 3 ? ['tech-education', 'ai-empowerment', 'mentorship'].includes(service.id)
         : services
       );
 
@@ -239,14 +279,18 @@ const Services = () => {
                   transition={{ duration: 0.5, delay: 0.2 }}
                 >
                   <Box
-                    component="img"
-                    src={servicesHero}
-                    alt="Services"
+                    component="video"
+                    src="/hero_company_logo_animated.mp4"
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
                     sx={{
                       width: '100%',
                       height: 'auto',
                       maxWidth: '100%',
-                      filter: 'drop-shadow(0 20px 30px rgba(0, 0, 0, 0.3))',
+                      borderRadius: '20px',
+                      boxShadow: '0 20px 50px rgba(0,0,0,0.5)',
                     }}
                   />
                 </motion.div>
@@ -298,6 +342,7 @@ const Services = () => {
               <Tab label="All Services" />
               <Tab label="Development" />
               <Tab label="Cloud & Data" />
+              <Tab label="Training & AI" />
             </Tabs>
           </Box>
 

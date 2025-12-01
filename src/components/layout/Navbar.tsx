@@ -17,6 +17,7 @@ import {
   useMediaQuery,
   Divider,
   ButtonProps,
+  AppBarProps,
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
@@ -92,12 +93,19 @@ const navItems = [
   { name: 'Contact', path: '/contact' },
 ];
 
-const StyledAppBar = styled(AppBar)({
-  background: 'rgba(15, 15, 26, 0.9)',
-  backdropFilter: 'blur(10px)',
-  boxShadow: '0 2px 10px rgba(0, 0, 0, 0.1)',
+interface StyledAppBarProps extends AppBarProps {
+  scrolled?: boolean;
+}
+
+const StyledAppBar = styled(AppBar, {
+  shouldForwardProp: (prop) => prop !== 'scrolled',
+})<StyledAppBarProps>(({ theme, scrolled }) => ({
+  background: scrolled ? 'rgba(15, 15, 26, 0.9)' : 'transparent',
+  backdropFilter: scrolled ? 'blur(10px)' : 'none',
+  boxShadow: scrolled ? '0 2px 10px rgba(0, 0, 0, 0.1)' : 'none',
   padding: '0.5rem 0',
-});
+  transition: 'all 0.3s ease',
+}));
 
 const StyledToolbar = styled(Toolbar)({
   display: 'flex',
@@ -260,8 +268,7 @@ const Navbar: React.FC = () => {
 
   return (
     <>
-      <Slide appear={false} direction="down" in={!scrolled}>
-        <StyledAppBar position="fixed" elevation={0}>
+      <StyledAppBar position="fixed" elevation={0} scrolled={scrolled}>
           <Container maxWidth="lg">
             <StyledToolbar disableGutters>
               <Box
@@ -381,8 +388,6 @@ const Navbar: React.FC = () => {
             </StyledToolbar>
           </Container>
         </StyledAppBar>
-      </Slide>
-      <Toolbar />
       <Drawer
         anchor="right"
         open={mobileOpen}

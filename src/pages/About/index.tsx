@@ -12,6 +12,7 @@ const AboutSection = styled(Box)(({ theme }) => ({
   padding: theme.spacing(10, 0),
   position: 'relative',
   overflow: 'hidden',
+  backgroundColor: '#0A0F29', // Midnight Blue - Keeping dark background as it fits "Space" theme, but removing gold
   '&::before': {
     content: '""',
     position: 'absolute',
@@ -19,14 +20,15 @@ const AboutSection = styled(Box)(({ theme }) => ({
     left: 0,
     right: 0,
     height: '500px',
-    background: 'linear-gradient(180deg, rgba(0,188,212,0.1) 0%, rgba(0,0,0,0) 100%)',
-    zIndex: -1,
+    background: 'linear-gradient(180deg, rgba(0,188,212,0.1) 0%, rgba(10, 15, 41, 0) 100%)', // Revert to Cyan
+    zIndex: 0,
   },
 }));
 
 const SectionTitle = styled(Typography)(() => ({
   position: 'relative',
   display: 'inline-block',
+  fontFamily: '"Space Grotesk", sans-serif',
   '&::after': {
     content: '""',
     position: 'absolute',
@@ -34,7 +36,7 @@ const SectionTitle = styled(Typography)(() => ({
     left: 0,
     width: '60px',
     height: '4px',
-    background: 'linear-gradient(90deg, #00bcd4, #00acc1)',
+    background: 'linear-gradient(90deg, #00bcd4, #00acc1)', // Revert to Cyan/Teal
     borderRadius: '2px',
   },
 }));
@@ -134,11 +136,14 @@ const About = () => {
                   />
                   About Us
                 </Typography>
-                <Typography variant="h2" component="h1" sx={{ fontWeight: 800, mb: 3 }}>
-                  We Are <Box component="span" sx={{ color: 'primary.main' }}>Chronos Disruptor</Box>
+                <Typography variant="h2" component="h1" sx={{ fontWeight: 800, mb: 3, fontFamily: '"Space Grotesk", sans-serif' }}>
+                  We Are <Box component="span" sx={{ color: 'primary.main' }}>VeleonEX</Box>
                 </Typography>
-                <Typography variant="body1" color="text.secondary" sx={{ mb: 4, fontSize: '1.1rem' }}>
-                  A team of passionate innovators dedicated to transforming businesses through cutting-edge technology and creative solutions.
+                <Typography variant="h5" color="text.secondary" sx={{ mb: 2, fontFamily: '"Space Grotesk", sans-serif', color: 'text.secondary' }}>
+                  Timeless Innovation. Infinite Experience.
+                </Typography>
+                <Typography variant="body1" color="text.secondary" sx={{ mb: 4, fontSize: '1.1rem', fontFamily: '"Inter", sans-serif' }}>
+                  We are a technology company devoted to building systems that transcend time — evolving, adapting, and enriching human life far into the future.
                 </Typography>
                 <Button
                   component={RouterLink}
@@ -202,13 +207,16 @@ const About = () => {
                 transition={{ duration: 0.5 }}
               >
                 <SectionTitle variant="h4" sx={{ mb: 4 }}>
-                  Our Story
+                  Brand Meaning
                 </SectionTitle>
-                <Typography variant="body1" color="text.secondary" paragraph>
-                  Founded in 2020, Chronos Disruptor began as a small team of passionate technologists with a shared vision to revolutionize the way businesses leverage technology. What started as a modest startup has now grown into a leading technology solutions provider, serving clients across various industries.
+                <Typography variant="h6" color="text.primary" paragraph sx={{ fontFamily: '"Space Grotesk", sans-serif' }}>
+                  VeleonEX = Velocity + Aeon + Experience
                 </Typography>
-                <Typography variant="body1" color="text.secondary" paragraph>
-                  Our journey has been marked by innovation, dedication, and a relentless pursuit of excellence. We've had the privilege of working with startups and established enterprises alike, helping them navigate the complex digital landscape and achieve their business objectives.
+                <Typography variant="body1" color="text.secondary" paragraph sx={{ fontFamily: '"Inter", sans-serif' }}>
+                  The union of speed, eternity, and human experience. We believe technology should endure. Our name blends Velocity and Aeon, representing speed that never fades.
+                </Typography>
+                <Typography variant="body1" color="text.secondary" paragraph sx={{ fontFamily: '"Inter", sans-serif' }}>
+                  We design intelligent experiences that evolve with time — shaping a world where innovation never stops, and experience never ages.
                 </Typography>
                 <Box sx={{ mt: 4 }}>
                   <Grid container spacing={3}>
@@ -240,46 +248,46 @@ const About = () => {
                     p: 3,
                     borderRadius: '16px',
                     background: 'rgba(255, 255, 255, 0.02)',
-                    border: '1px solid rgba(255, 255, 255, 0.1)',
+                    border: '1px solid rgba(0, 188, 212, 0.2)', // Revert to Cyan border hint
                     boxShadow: '0 10px 30px rgba(0, 0, 0, 0.2)',
                   }}
                 >
-                  <Typography variant="h5" component="h3" sx={{ mb: 3, fontWeight: 600 }}>
-                    Our Mission
+                  <Typography variant="h5" component="h3" sx={{ mb: 3, fontWeight: 600, fontFamily: '"Space Grotesk", sans-serif', color: 'primary.main' }}>
+                    Core Values
                   </Typography>
-                  <Typography variant="body1" color="text.secondary" sx={{ mb: 3 }}>
-                    To empower businesses through innovative technology solutions that drive growth, efficiency, and transformation in an ever-evolving digital landscape.
+                  <Typography variant="body1" color="text.secondary" sx={{ mb: 3, fontFamily: '"Inter", sans-serif' }}>
+                    To craft technologies that stand the test of time — intelligent, human-centered, and ever-evolving.
                   </Typography>
                   <FeatureItem>
-                    <CheckCircle />
+                    <CheckCircle sx={{ color: 'primary.main' }} />
                     <Box>
-                      <Typography variant="subtitle1" sx={{ fontWeight: 600, mb: 0.5 }}>
-                        Innovation at Core
+                      <Typography variant="subtitle1" sx={{ fontWeight: 600, mb: 0.5, color: 'text.primary' }}>
+                        Timeless Design
                       </Typography>
                       <Typography variant="body2" color="text.secondary">
-                        We constantly explore new technologies and methodologies to deliver cutting-edge solutions.
+                        We create systems built to last, not just to launch.
                       </Typography>
                     </Box>
                   </FeatureItem>
                   <FeatureItem>
-                    <Group />
+                    <Group sx={{ color: 'primary.main' }} />
                     <Box>
-                      <Typography variant="subtitle1" sx={{ fontWeight: 600, mb: 0.5 }}>
-                        Client-Centric Approach
+                      <Typography variant="subtitle1" sx={{ fontWeight: 600, mb: 0.5, color: 'text.primary' }}>
+                        Velocity of Thought
                       </Typography>
                       <Typography variant="body2" color="text.secondary">
-                        Your success is our priority. We work closely with you to understand your unique needs.
+                        We move fast — but with clarity and purpose.
                       </Typography>
                     </Box>
                   </FeatureItem>
                   <FeatureItem>
-                    <EmojiObjects />
+                    <EmojiObjects sx={{ color: 'primary.main' }} />
                     <Box>
-                      <Typography variant="subtitle1" sx={{ fontWeight: 600, mb: 0.5 }}>
-                        Creative Problem Solving
+                      <Typography variant="subtitle1" sx={{ fontWeight: 600, mb: 0.5, color: 'text.primary' }}>
+                        Human Experience
                       </Typography>
                       <Typography variant="body2" color="text.secondary">
-                        We tackle complex challenges with innovative and practical solutions.
+                        Every line of code, every product, begins with empathy.
                       </Typography>
                     </Box>
                   </FeatureItem>
